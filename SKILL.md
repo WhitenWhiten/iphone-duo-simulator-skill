@@ -7,6 +7,7 @@ description: Use when adapting, testing or capturing an iOS app on the iPhone Du
 
 Scripts are in `scripts/` next to this file. The full guide, with the reasoning and pictures, is
 https://foldhunt.com/guides/everything-your-agent-needs-for-iphone-duo/ (Markdown: append `index.md`).
+The same files are on GitHub: https://github.com/WhitenWhiten/iphone-duo-simulator-skill
 
 ## Setup, once
 
@@ -49,7 +50,7 @@ python3 scripts/xcode_device.py do "t 200 560 f 200 260 0.4"
 python3 scripts/xcode_device.py end                  # always close the session
 ```
 
-On the Duo, Xcode's tools read the device through its **cover**: they work fully while the phone is shut, but with the phone open the screenshot is black, the hierarchy stops at the cover's width and taps don't land, and there is no hinge command. So: `duo.py` folds, turns and captures every pose; `xcode_device.py` taps and reads the screen while shut. To test a flow on the open display, check it shut first, then open the phone with `duo.py` and capture. A hierarchy read during an animation has stale hit points: look again before a retry.
+On the Duo, Xcode's tools read the device through its **cover**: they work fully while the phone is shut, but with the phone open the screenshot is black, the hierarchy stops at the cover's width and taps don't land, and there is no hinge command. So: `duo.py` folds, turns and captures every pose; `xcode_device.py` taps and reads the screen while shut. To test a flow on the open display, check it shut first, then open the phone with `duo.py` and capture. Or tap the open phone with [duoctl](https://github.com/skarol/duoctl) (`duoctl tap <x> <y>`, interface points), which sends touches through the lit display's own touchscreen; its hinge-angle readback comes back null on `devicectl` 651.13.5. A hierarchy read during an animation has stale hit points: look again before a retry.
 
 ## Every change, every pose
 
