@@ -37,7 +37,7 @@ python3 scripts/duo_mockup.py capture.png book.png --pose book --deg 128
 
 `duo.py` posts the same vendor-defined HID events as Device Hub's hinge slider and orientation picker (usage page `0xFF61`, usage `0x5B`) from inside the simulator, through `duo_fold.c`, which it compiles on first use.
 
-## What the simulator does and doesn't do (Xcode 27.1 RC)
+## What the simulator does and doesn't do (Xcode 27.1)
 
 - **No hinge-angle readback.** `devicectl device motion hinge-angle` doesn't exist in `devicectl` 651.13.5. `xcrun devicectl device info displays` does say which display is active, so whether the phone is shut or open.
 - **The hinge has hysteresis.** Opened from shut, the cover stays lit and the hinge reports closed up to about 150°. `duo.py fold` therefore opens the phone flat before bending it.
@@ -49,7 +49,7 @@ python3 scripts/duo_mockup.py capture.png book.png --pose book --deg 128
 
 - macOS on Apple silicon, Xcode 27.1 with the iOS 27.1 simulator runtime, and Python 3.
 - The mock-up script needs numpy and Pillow, and Apple's iPhone Duo bezels from [Apple Design Resources](https://developer.apple.com/design/resources/), which you download yourself. Their licence covers mock-ups of your app, not republishing the art, so none is included here.
-- The scripts use private, undocumented simulator interfaces. They were verified against Xcode 27.1 RC (27A9275) and the iOS 27.1 runtime (24A94232); a later Xcode may change them.
+- The scripts use private, undocumented simulator interfaces. They were verified against Xcode 27.1 (27A9275, the release candidate build that Apple released unchanged on October 15) and the iOS 27.1 runtime (24A94232); a later Xcode may change them.
 
 ## Related
 
